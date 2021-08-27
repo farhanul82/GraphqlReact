@@ -1,0 +1,11 @@
+export const FETCH_STUDENT = 'FETCH_STUDENT'
+export const FETCH_SUBJECT = 'FETCH_SUBJECT'
+
+export const FETCH_SUBJECT_NAME = 'FETCH_SUBJECT_NAME'
+export const UPDATE_NAME = 'UPDATE_NAME'
+
+export const ADD_STUDENT = 'ADD_STUDENT'
+export const ADD_SUBJECT = 'ADD_SUBJECT'
+
+
+
