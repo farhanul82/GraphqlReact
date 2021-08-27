@@ -17,14 +17,14 @@ const Reducer = (state = {
             })
 
             case ADD_STUDENT:
-            
+                console.log([...state.student,action.payload],'kkkkkkkkk')
                 return({
                     ...state,
-                    student:action.payload
+                    student:[...state.student,action.payload]
                 })
 
             case UPDATE_NAME:
-            console.log(action.payload)
+           
                 return({
                     ...state,
                     student:action.payload

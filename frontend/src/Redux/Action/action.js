@@ -115,6 +115,12 @@ mutation{
       ]
     }){
       name
+      email
+      phone
+      dateOfBirth
+      subject{
+          name
+      }
     }
   }
       `}
@@ -127,11 +133,9 @@ mutation{
         }
     }).then(response => response.json())
         .then(r =>{
-            dispatch({
-                type: ADD_STUDENT,
-                payload: r.data.subjects
-            });
-             console.log(r.data)})
+          alert("Successfully Added")
+           
+            })
 }
 
 
@@ -158,9 +162,7 @@ export const addSubjectt = (name) => (dispatch) => {
         }
     }).then(response => response.json())
         .then(r => {
-            console.log(r.data)
-            
-    
+            alert("Successfully Added")
             })
 
 }

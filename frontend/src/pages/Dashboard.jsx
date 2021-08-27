@@ -20,6 +20,8 @@ import Chart from '../components/Chart/Chart'
 
 import { AiFillDelete } from 'react-icons/ai';
 import AddSubject from '../components/AddSubject/AddSubject'
+import StudentTable from '../components/StudentTable/StudentTable'
+import SubjectTable from '../components/SubjectTable/SubjectTable'
 
 
 
@@ -178,8 +180,8 @@ const Dashboard = () => {
     //         .then(r => setSubject(r.data.subjects))
 
     // }
+ 
     const dispatch = useDispatch()
-
 
     useEffect(() => {
         dispatch(fetchStudent())
@@ -221,16 +223,7 @@ const Dashboard = () => {
                             <h3>Subjects</h3>
                         </div>
                         <div className="card__body">
-                            {subject ? (
-                                <div>
-                                    <Table
-                                        headData={Subjects.head}
-                                        renderHead={(item, index) => renderSubjectHead(item, index)}
-                                        bodyData={subject}
-                                        renderBody={(item, index) => renderSubjectBody(item, index)}
-                                    />
-                                </div>
-                            ) : (<div></div>)}
+                           <SubjectTable/>
                               <div className="card__footer">
                         
                             <AddSubject />
@@ -247,17 +240,7 @@ const Dashboard = () => {
                             <h3>Students List</h3>
                         </div>
                         <div className="card__body">
-                            {student ? (
-                                <div>
-                                    <Table
-                                        headData={Students.header}
-                                        renderHead={(item, index) => renderHead(item, index)}
-                                        bodyData={student}
-                                        renderBody={(item, index) => renderBody(item, index)}
-                                    />
-                                </div>
-                            ) : (<div></div>)
-                            }
+                           <StudentTable/>
 
                         </div>
                         <div className="card__footer">

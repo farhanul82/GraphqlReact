@@ -25,7 +25,7 @@ const renderBody = (item, index) => (
         <td>{item.email}</td>
         <td>{item.phone}</td>
         <td>{item.dateOfBirth}</td>
-        <td>{item.subject.map(x => x.name + ',')}</td>
+        <td>{item.subject?.map(x => x.name + ',')}</td>
 
 
 
