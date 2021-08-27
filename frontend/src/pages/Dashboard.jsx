@@ -2,15 +2,8 @@ import React, { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
-
-
 import { useDispatch, useSelector } from 'react-redux'
 
-import Table from '../components/table/Table'
-
-import * as constants from '../constants'
-
-import axios from 'axios'
 
 import AddStudent from '../components/addStudent/AddStudent'
 import { fetchStudent, fetchSubjects } from '../Redux/Action/action'
@@ -25,181 +18,22 @@ import SubjectTable from '../components/SubjectTable/SubjectTable'
 
 
 
-const Subjects = {
-    head: [
-
-        'Subject',
-        'Student',
-
-    ]
-}
-
-
-const renderSubjectHead = (item, index) => (
-    <th key={index}>{item}</th>
-)
-
-
-const renderSubjectBody = (item, index) => (
-    <tr key={index}>
-
-        <td>{item.name}</td>
-        <td>{item.student.map(x => x.name + ',')}</td>
-       
-    </tr>
-)
-
-
-const Students = {
-    header: [
-        'name',
-        'email',
-        'phone',
-        "dateOfBirth",
-        "subject",
-        "action"
-    ]
-}
-
-
-
-const renderHead = (item, index) => (
-    <th key={index}>{item}</th>
-)
-
-
-
-
-
-
-
 
 
 
 const Dashboard = () => {
 
-    const deleteStudent = (id) => {
-        const requestBody = {
-            query: `
-                mutation{
-                    deleteStudent(_id:"${id}"){
-                      name
-                    }
-                }
-              `}
-    
-        fetch('http://localhost:4000/graphql', {
-            method: 'POST',
-            body: JSON.stringify(requestBody),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => response.json())
-            .then(r => {
-                console.log(r.data)
-    
-            })
-    
-    
-    }
-
-
-
-    const renderBody = (item, index) => {
-        return (
-            <tr key={index}>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
-                <td>{item.phone}</td>
-                <td>{item.dateOfBirth}</td>
-                <td>{item.subject.map(x => x.name + ',')}</td>
-                <td><button className="btn" onClick={() => deleteStudent(item._id)}><AiFillDelete /></button>
-                    <EditStudent id={item._id} />
-                </td>
-    
-            </tr>
-        )
-    
-    
-    }
-    
-    // const [students, setStudent] = useState()
-    // const [subject, setSubject] = useState()
-
-
-    // const fetchStudents = () => {
-    //     const requestBody = {
-    //         query: `
-    //     query{
-    //         students{
-    //             _id
-    //           name
-    //           email
-    //           phone
-    //           dateOfBirth
-    //           subject{
-    //               name
-    //           }
-    //         }
-    //       }
-    //       `}
-
-
-    //     fetch('http://localhost:4000/graphql', {
-    //         method: 'POST',
-    //         body: JSON.stringify(requestBody),
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     }).then(response => response.json())
-    //         .then(r => setStudent(r.data.students))
-    // }
-
-
-    // const fetchSubjects = () => {
-    //     const requestBodySubject = {
-    //         query: `
-    //     query{
-    //         subjects{
-    //           _id
-    //           name
-    //           student{
-    //             name
-    //           }
-    //         }
-    //       }
-    //       `}
-
-    //     fetch('http://localhost:4000/graphql', {
-    //         method: 'POST',
-    //         body: JSON.stringify(requestBodySubject),
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     }).then(response => response.json())
-    //         .then(r => setSubject(r.data.subjects))
-
-    // }
  
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchStudent())
         dispatch(fetchSubjects())
-        //  fetchStudents()
-        //   fetchSubjects()
-        
-
-
-
     }, []);
 
     const student = useSelector(state => state.store.student)
     const subject = useSelector(state => state.store.subject)
 
-
-
-    console.log(subject)
     return (
         <div>
             <h2 className="page-header">Dashboard</h2>

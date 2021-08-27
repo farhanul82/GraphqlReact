@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const graphqlHttp = require('express-graphql');
-const { buildSchema } = require('graphql');
+
 
 
 
@@ -40,6 +40,9 @@ app.use((req, res, next) => {
   next();
 });    
 
+
+// Initilize Graphql
+
 app.use(
     '/graphql',
     graphqlHttp.graphqlHTTP({
@@ -54,38 +57,6 @@ app.use(
   app.get("/",(req,res)=>{
       res.send("hello")
   })
-
-//   let a = []
-//   app.get('/sub',(req,res)=>{
-//     Student.find({"subject.name":"Bangla"},(err,data)=>{
-//       if(err){
-//         res.json({
-//           "msg":"erre"
-//         })
-//       }else{
-//         res.send(data)
-//         console.log(data)
-//       }
-//     })
-
-//  console.log(a)
-//   })
-
-app.delete('/studentDelete/:id',(req,res)=>{
-      Student.deleteOne({ _id:req.params.id},(err)=>{
-        if(err){
-          res.status(500).json({
-            error:"There was a server side error..!"
-          })
-        }else{
-          res.status(200).json({
-            error:"Deleted Successfully..!"
-          })
-        }
-      })
-  
-
-    })
 
 
   app.listen(process.env.PORT,()=>{
